@@ -1,4 +1,8 @@
 # V8.js
+[![NPM version](https://flat.badgen.net/npm/v/v8.js)](https://www.npmjs.com/package/v8.js)
+[![NPM weekly download](https://flat.badgen.net/npm/dw/v8.js)](https://www.npmjs.com/package/v8.js)
+[![package publish size](https://flat.badgen.net/packagephobia/publish/v8.js)](https://packagephobia.now.sh/result?p=v8.js)
+[![Support me on Patreon](https://badgen.net/badge/become/a%20patron/F96753?icon=patreon)](https://www.patreon.com/gmartigny)
 
 Call native V8 engine functions.
 
