@@ -1,7 +1,13 @@
 {
   "name": "v8.js",
   "version": "0.1.2",
-  "description": "",
+  "description": "Call native V8 engine functions.",
+  "keywords": [
+    "native",
+    "optimization",
+    "engine",
+    "memory"
+  ],
   "main": "index.js",
   "scripts": {
     "lint": "eslint \"*.js\"",
@@ -13,6 +19,13 @@
     ]
   },
   "author": "GMartigny <guillaume.martigny@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GMartigny/v8.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GMartigny/v8.js/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "@gmartigny/eslint-config": "^1.2.5",
