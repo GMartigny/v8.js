@@ -20,7 +20,6 @@ Object.keys(functionsList).forEach((funcName) => {
                 throw error;
             }
             else {
-                console.error(error);
                 console.error("Fail to call native V8 function, try again with the --allow-natives-syntax flag.");
             }
         }
