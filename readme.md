@@ -13,6 +13,14 @@ For brevity sake not all functions have been integrated to V8.js, if you need a 
 
     npm install v8.js
 
+Or add a `<script>` tag in your HTML page:
+
+```html
+<script src="https://unpkg.com/v8.js"></script>
+<!-- Or -->
+<script src="https://cdn.jsdelivr.net/npm/v8.js"></script>
+```
+
 ## Usage
 
 V8.js exports a limited list of functions from the engine core that you can use.

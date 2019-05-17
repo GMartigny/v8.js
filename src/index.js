@@ -1,7 +1,6 @@
-const functionsList = require("./src/functions-list");
+const functionsList = require("./functions-list");
 
-const isNativeActive = process.execArgv.includes("--allow-natives-syntax");
-module.exports.isNativeActive = isNativeActive;
+let isNativeActive = true;
 
 Object.keys(functionsList).forEach((funcName) => {
     module.exports[funcName] = (...args) => {
@@ -27,3 +26,12 @@ Object.keys(functionsList).forEach((funcName) => {
         return result;
     };
 });
+
+try {
+    module.exports.getHeapUsage();
+}
+catch (error) {
+    isNativeActive = false;
+}
+
+module.exports.isNativeActive = isNativeActive;
