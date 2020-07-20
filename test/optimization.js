@@ -1,11 +1,15 @@
+/* eslint-disable no-bitwise */
 const test = require("ava");
-const v8 = require("../");
+const { getOptimizationStatus, prepareFunctionForOptimization, optimizeFunctionOnNextCall } = require("..");
 
 test("optimization routine", (t) => {
     const func = () => "ok";
 
-    // v8.prepareFunctionForOptimization(func);
-    t.is(v8.optimizeFunctionOnNextCall(func), undefined);
+    const isOptimized = 1 << 4;
+    t.true((getOptimizationStatus(func) & isOptimized) === 0);
+
+    prepareFunctionForOptimization(func);
+    optimizeFunctionOnNextCall(func);
     func();
-    t.is(v8.getOptimizationStatus(func));
+    t.true((getOptimizationStatus(func) & isOptimized) !== 0);
 });

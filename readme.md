@@ -1,12 +1,11 @@
 # V8.js
+
 [![NPM version](https://flat.badgen.net/npm/v/v8.js)](https://www.npmjs.com/package/v8.js)
-[![package publish size](https://flat.badgen.net/packagephobia/publish/v8.js)](https://packagephobia.now.sh/result?p=v8.js)
-[![Support me on Patreon](https://flat.badgen.net/badge/become/a%20patron/F96753?icon=patreon)](https://www.patreon.com/gmartigny)
 
 Call native V8 engine functions.
 
 Can access all functions define in [V8 runtime](https://github.com/v8/v8/blob/master/src/runtime/runtime.h).
-For brevity sake not all functions have been integrated to V8.js, if you need a function not listed [raise a new issue](https://github.com/GMartigny/v8.js/issues/new) explaining your use-case.
+For brevity's sake not all functions have been integrated to V8.js, if you need a function not listed [raise a new issue](https://github.com/GMartigny/v8.js/issues/new) explaining your use-case.
 
 ## Installation
 
@@ -41,7 +40,7 @@ console.log(v8.getHeapUsage());
 Return the current size of the heap in bytes.
 
 ```js
-v8.getHeapUsage();
+const heapSize = v8.getHeapUsage();
 ```
 
 ### collectGarbage
@@ -52,8 +51,7 @@ Trigger the internal garbage collector.
 v8.collectGarbage();
 ```
 
-<!--
-### `prepareFunctionForOptimization`
+### prepareFunctionForOptimization
 
 Prepare a function to be optimized by the engine. This is the first step of the optimization routine.
 
@@ -63,8 +61,7 @@ v8.prepareFunctionForOptimization(fn);
 
 #### Arguments
 
- * {Function} The function that need to be prepared.
--->
+ * {...Function} Set of functions that need to be prepared.
 
 
 ### optimizeFunctionOnNextCall
@@ -85,13 +82,19 @@ v8.optimizeFunctionOnNextCall(...fns);
 Return integer representing the optimization status of a function in a binary flag format.
 
 ```js
-v8.getOptimizationStatus(...fns);
+const status = v8.getOptimizationStatus(...fns);
 ```
 
 #### Arguments
 
  * {...Function} Set of functions, give the optimization status for the first one.
+
+
+## Related
+
+ - [`opti-status`](https://github.com/GMartigny/opti-status) -- Get the optimization status of a function from the point of view of V8 engine
+
+
+## License
  
- ## License
- 
- [MIT](license)
+[MIT](license)

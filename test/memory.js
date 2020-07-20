@@ -1,8 +1,12 @@
 const test = require("ava");
-const v8 = require("../");
+const { getHeapUsage, collectGarbage } = require("..");
 
 test("memory management", (t) => {
-    t.is(v8.getHeapUsage());
+    const heap = getHeapUsage();
+    t.true(heap > 0);
 
-    t.is(v8.collectGarbage());
+    collectGarbage();
+
+    const newHeap = getHeapUsage();
+    t.true(newHeap < heap);
 });
