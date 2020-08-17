@@ -16,9 +16,10 @@
         "extends": "@gmartigny/eslint-config"
     },
     "author": "GMartigny",
+    "funding": "https://github.com/GMartigny/v8.js?sponsor=1",
     "repository": {
         "type": "git",
-        "url": "https://github.com/GMartigny/v8.js.git"
+        "url": "git+https://github.com/GMartigny/v8.js.git"
     },
     "bugs": {
         "url": "https://github.com/GMartigny/v8.js/issues"
@@ -28,5 +29,9 @@
         "@gmartigny/eslint-config": "^1.5.0",
         "ava": "^3.10.1",
         "eslint": "^7.5.0"
+    },
+    "homepage": "https://github.com/GMartigny/v8.js#readme",
+    "directories": {
+        "test": "test"
     }
 }
