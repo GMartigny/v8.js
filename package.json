@@ -1,6 +1,6 @@
 {
     "name": "v8.js",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "Call native V8 engine functions.",
     "keywords": [
         "native",
