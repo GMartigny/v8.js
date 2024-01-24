@@ -1,21 +1,20 @@
-const functionsList = require("./functions-list");
+import functionsList from "./functions-list.js";
 
-let isNativeActive = true;
+let active = true;
 
-Object.keys(functionsList).forEach((funcName) => {
-    module.exports[funcName] = (...args) => {
+const v8 = Object.keys(functionsList).reduce((functions, funcName) => {
+    functions[funcName] = (...args) => {
         const nbArgs = functionsList[funcName];
         const argsList = [...new Array(nbArgs >= 0 ? nbArgs : args.length)].map((_, i) => `arg${i}`);
-        let result;
         try {
             const nativeName = `%${funcName[0].toUpperCase()}${funcName.substr(1)}`;
             const functionBody = `return ${nativeName}(${argsList.join(", ")});`;
             // eslint-disable-next-line no-new-func
             const func = new Function(...argsList, functionBody);
-            result = func(...args);
+            return func(...args);
         }
         catch (error) {
-            if (isNativeActive) {
+            if (active) {
                 throw error;
             }
             else {
@@ -23,15 +22,21 @@ Object.keys(functionsList).forEach((funcName) => {
             }
         }
 
-        return result;
+        return null;
     };
-});
+    return functions;
+}, {});
 
 try {
-    module.exports.getHeapUsage();
+    v8.collectGarbage();
 }
 catch (error) {
-    isNativeActive = false;
+    active = false;
 }
 
-module.exports.isNativeActive = isNativeActive;
+const isNativeActive = active;
+
+export {
+    isNativeActive,
+};
+export default v8;

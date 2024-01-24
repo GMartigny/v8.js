@@ -14,9 +14,9 @@ For brevity's sake not all functions have been integrated to V8.js, if you need 
 Or add a `<script>` tag in your HTML page:
 
 ```html
-<script src="https://unpkg.com/v8.js"></script>
-<!-- Or -->
-<script src="https://cdn.jsdelivr.net/npm/v8.js"></script>
+<script type="module">
+    import v8 from 'https://unpkg.com/v8.js'; // or https://cdn.jsdelivr.net/npm/v8.js
+</script>
 ```
 
 ## Usage
@@ -25,9 +25,9 @@ V8.js exports a limited list of functions from the engine core that you can use.
 In order for the package to work, you have to allow native syntax with the `--allow-natives-syntax` flag.
 
 ```js
-const v8 = require("v8.js");
+import v8, { isNativeActive } from "v8.js";
 
-console.log(v8.getHeapUsage());
+console.log(v8.collectGarbage());
 ```
 
  * Node: `node --allow-natives-syntax file.js`
@@ -35,20 +35,20 @@ console.log(v8.getHeapUsage());
 
 ## API
 
-### getHeapUsage
-
-Return the current size of the heap in bytes.
-
-```js
-const heapSize = v8.getHeapUsage();
-```
-
 ### collectGarbage
 
 Trigger the internal garbage collector.
 
 ```js
 v8.collectGarbage();
+```
+
+### getFunctionName
+
+Return the name of the function passed in argument
+
+```js
+v8.getFunctionName(fn);
 ```
 
 ### prepareFunctionForOptimization
@@ -64,9 +64,9 @@ v8.prepareFunctionForOptimization(fn);
  * {...Function} Set of functions that need to be prepared.
 
 
-### optimizeFunctionOnNextCall
+### optimizeFunctionOnNextCall
 
-Set a function to be optimize on its next call. This is the second step of the optimization routine.
+Set a function to be optimized on its next call. This is the second step of the optimization routine.
 
 ```js
 v8.optimizeFunctionOnNextCall(...fns);
@@ -77,7 +77,7 @@ v8.optimizeFunctionOnNextCall(...fns);
  * {...Function} Set of functions to target for optimization.
 
 
-### getOptimizationStatus
+### getOptimizationStatus
 
 Return integer representing the optimization status of a function in a binary flag format.
 

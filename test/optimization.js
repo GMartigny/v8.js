@@ -1,15 +1,19 @@
 /* eslint-disable no-bitwise */
-const test = require("ava");
-const { getOptimizationStatus, prepareFunctionForOptimization, optimizeFunctionOnNextCall } = require("..");
+import test from "ava";
+import v8, { isNativeActive } from "../src/index.js";
 
 test("optimization routine", (t) => {
+    if (!isNativeActive) {
+        t.fail("V8 native functions not available");
+    }
+
     const func = () => "ok";
 
     const isOptimized = 1 << 4;
-    t.true((getOptimizationStatus(func) & isOptimized) === 0);
+    t.true((v8.getOptimizationStatus(func) & isOptimized) === 0);
 
-    prepareFunctionForOptimization(func);
-    optimizeFunctionOnNextCall(func);
+    v8.prepareFunctionForOptimization(func);
+    v8.optimizeFunctionOnNextCall(func);
     func();
-    t.true((getOptimizationStatus(func) & isOptimized) !== 0);
+    t.true((v8.getOptimizationStatus(func) & isOptimized) !== 0);
 });

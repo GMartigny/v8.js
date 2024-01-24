@@ -1,12 +1,14 @@
-const test = require("ava");
-const { getHeapUsage, collectGarbage } = require("..");
+import test from "ava";
+import v8, { isNativeActive } from "../src/index.js";
 
 test("memory management", (t) => {
-    const heap = getHeapUsage();
-    t.true(heap > 0);
+    if (!isNativeActive) {
+        t.fail("V8 native functions not available");
+    }
 
-    collectGarbage();
+    const name = v8.getFunctionName(function executor () {});
+    t.is(name, "executor");
 
-    const newHeap = getHeapUsage();
-    t.true(newHeap < heap);
+    v8.collectGarbage();
+    t.pass();
 });

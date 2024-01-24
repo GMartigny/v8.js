@@ -9,8 +9,10 @@
         "memory"
     ],
     "main": "src/index.js",
+    "type": "module",
     "scripts": {
-        "test": "ava --node-arguments '--allow-natives-syntax'"
+        "lint": "eslint **/*.js",
+        "test": "ava --no-worker-threads --node-arguments='--allow-natives-syntax'"
     },
     "eslintConfig": {
         "extends": "@gmartigny/eslint-config"
@@ -26,9 +28,9 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@gmartigny/eslint-config": "^1.5.0",
-        "ava": "^3.10.1",
-        "eslint": "^7.5.0"
+        "@gmartigny/eslint-config": "^2.2.0",
+        "ava": "^6.1.0",
+        "eslint": "^8.56.0"
     },
     "homepage": "https://github.com/GMartigny/v8.js#readme",
     "directories": {
